@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import atoms from "../../../util/atoms";
 
+import useWindowSize from "../../../hooks/useWindowSize";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,25 +15,24 @@ import { userPhotoObj } from "@/lib/userPhotoObj";
 
 import handleSwipeEvents from "../../../util/handleSwipeEvents";
 
-export default function Stories({
-  username,
-  width,
-}: {
-  username: string;
-  width: number;
-}) {
+export default function Stories() {
   const [stories] = useAtom(atoms.stories);
   const [userDetails] = useAtom(atoms.userDetails);
   const [storiesArray] = useAtom(atoms.storiesArray);
 
+  const userCertainName = useAtomValue(atoms.userCertainName);
+
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+
+  const username = userCertainName;
+
   const [storyUsername, setStoryUsername] = useState(username);
   const [positionIndex, setPositionIndex] = useState(
     storiesArray.indexOf(username)
   );
 
-  const a = userPhotoObj[username]
+  const width = useWindowSize();
 
   const swipeProps = {
     touchStart,
@@ -89,7 +89,6 @@ export default function Stories({
                       storiesArray={storiesArray}
                       positionIndex={positionIndex}
                     />
-
                   </div>
                 ) : (
                   <div className="group absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 bg-[#00000094]">
