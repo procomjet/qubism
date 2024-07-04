@@ -13,8 +13,7 @@ export default function ImageIteration({
   const [, setOpenStories] = useAtom(atoms.openStories);
   const [, setUserName] = useAtom(atoms.userCertainName);
   const b = useAtom(atoms.userPhotos);
-  const c = b[0][username];
-  // console.log(userCertainName);
+  const c = b[0][Number(username)];
 
   return (
     <button
