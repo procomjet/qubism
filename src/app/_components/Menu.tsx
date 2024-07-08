@@ -36,7 +36,7 @@ export const Menu: React.FC<MenuProps> = ({ toggleMenu }) => {
               </div>
             </div>
           </div>
-          <img
+          <Image
             className='relative flex-[0_0_auto] mr-[-0.39px]'
             alt='Container'
             src='/img/container.svg'
